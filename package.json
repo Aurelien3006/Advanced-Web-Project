@@ -1,5 +1,5 @@
 {
-    "name": "Advanced-Web-Project",
+    "name": "advanced-web-project",
     "version": "1.0.0",
     "scripts": {
         "script": "node index.js"
