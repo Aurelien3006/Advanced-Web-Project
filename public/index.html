@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Express Server Project</title>
+</head>
+<body>
+  <h1>This is the first static page</h1>
+  <button onclick="fetchData(1)">Fetch Data ID 1</button>
+  <button onclick="fetchData(2)">Fetch Data ID 2</button>
+  <button onclick="goToPage2()">The Second Static Page</button>
+  <script>
+    function fetchData(id) {
+      fetch(`/api/${id}`)
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById('result').innerHTML = data.message;
+          alert(data.data);
+        })
+        .catch(error => console.error('Error:', error));
+    }
+    function goToPage2() {
+    window.location.href = 'secondpage.html';
+    }
+  </script>
+  
+  <div id="result"></div>
+
+  <link rel="stylesheet" href="./styles/styles.css">
+  <script src="/scripts/script.js"></script>
+</body>
+</html>
