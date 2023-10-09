@@ -24,8 +24,88 @@
     window.location.href = 'secondpage.html';
     }
   </script>
-  
+ 
   <div id="result"></div>
+
+  <button onclick="createRecord()">Create Record</button>
+  <button onclick="retrieveRecords()">Retrieve Records</button>
+  <button onclick="updateRecord()">Update Record</button>
+  <button onclick="deleteRecord()">Delete Record</button>
+
+  <script>
+    function createRecord() {
+      const param1 = '3';
+      const param2 = 'Carmela';
+      const param3 = 'carmelita@outlook.net';
+      const param4 = 'qsdfghjklm';
+
+      fetch('/api/create', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ param1, param2, param3,param4 }),
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log('New record created:', data);
+      })
+      .catch(error => {
+        console.error('Error creating record:', error);
+      });
+    }
+
+    function retrieveRecords() {
+      const param = ''; // Set the parameter value as needed
+
+      fetch(`/api/retrieve/${param}`)
+      .then(response => response.json())
+      .then(data => {
+        console.log('Retrieved records:', data);
+      })
+      .catch(error => {
+        console.error('Error retrieving records:', error);
+      });
+    }
+
+    function updateRecord() {
+      const id = 3; // Set the ID of the record to update
+      const param1 = '3'; // Set the new parameter values as needed
+      const param2 = 'Carmelita';
+      const param3 = 'carmelita@outlook.net';
+      const param4 = 'wxcvbn';
+
+      fetch(`/api/update/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ param1, param2, param3,param4 }),
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Record updated successfully:', data);
+      })
+      .catch(error => {
+        console.error('Error updating record:', error);
+      });
+    }
+
+    function deleteRecord() {
+      const id = 3; // Set the ID of the record to delete
+
+      fetch(`/api/delete/${id}`, {
+        method: 'DELETE',
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Record deleted successfully:', data);
+      })
+      .catch(error => {
+        console.error('Error deleting record:', error);
+      });
+    }
+  </script>
 
   <link rel="stylesheet" href="./styles/styles.css">
   <script src="/scripts/script.js"></script>
